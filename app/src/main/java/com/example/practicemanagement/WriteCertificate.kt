@@ -28,6 +28,7 @@ class WriteCertificate : AppCompatActivity() {
     lateinit var btn_writeC_picture: Button
     lateinit var btn_writeC_file: Button
     lateinit var btn_writeC_complete: Button
+    lateinit var btn_writeC_revise: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +44,7 @@ class WriteCertificate : AppCompatActivity() {
         btn_writeC_picture = findViewById(R.id.btn_writeC_picture)
         btn_writeC_file = findViewById(R.id.btn_writeC_file)
         btn_writeC_complete = findViewById(R.id.btn_writeC_complete)
+        btn_writeC_revise = findViewById(R.id.btn_writeC_revise)
 
         //뒤로가기 버튼
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -65,7 +67,7 @@ class WriteCertificate : AppCompatActivity() {
         //DB 연동
         certificate= CertifiCateManager(this,"certificate",null,1)
 
-        //작성완료 클릭했을때때
+        //작성완료 클릭했을때
         btn_writeC_complete.setOnClickListener{
             var str_name: String = edt_writeC_name.text.toString()
             //var str_date: String = calendarTextView.text.toString()
@@ -82,11 +84,35 @@ class WriteCertificate : AppCompatActivity() {
                         + str_date + "',"+"'"+str_period+"'"+",'"+str_etc+"');")
                 sqlitedb.close()
 
-        val intent = Intent(this,CertificateView::class.java)
-        intent.putExtra("intent_name",str_name)
-        startActivity(intent)
+            val intent = Intent(this,CertificateView::class.java)
+            intent.putExtra("intent_name",str_name)
+            startActivity(intent)
+        }
+
+        //수정완료 클릭했을때
+       btn_writeC_revise.setOnClickListener{
+           var str_name: String = edt_writeC_name.text.toString()
+           //var str_date: String = calendarTextView.text.toString()
+           var str_date: String =" "
+           var str_period: String = edt_writeC_selectPeriod.text.toString()
+           var str_etc: String = edt_writeC_etc.text.toString()
+
+           if(calendarTextView.text !==null){
+               str_date = calendarTextView.text.toString()
+           }
+
+           sqlitedb = certificate.readableDatabase
+           sqlitedb.execSQL("UPDATE certificate SET date='"+str_date +"', period='"
+                   +str_period+"',etc='"+str_etc
+                   +"' WHERE name = '"+str_name+"';")
+           sqlitedb.close()
+
+           val intent = Intent(this,CertificateView::class.java)
+           intent.putExtra("intent_name",str_name)
+           startActivity(intent)
         }
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item?.itemId){

@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.system.Os.close
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import org.w3c.dom.Text
@@ -21,6 +22,7 @@ class CertificateView : AppCompatActivity() {
     lateinit var prizesqlitedb: SQLiteDatabase              //certificatedb연동
     lateinit var layout: LinearLayout                       //certificate layout
     lateinit var prizelayout: LinearLayout                  //prize layout
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +74,11 @@ class CertificateView : AppCompatActivity() {
                 tvEtc.text ="비고"+str_etc
                 layout_item.addView(tvEtc)
 
+            }
+            layout_item.setOnClickListener{
+                val intent = Intent(this,CertificateList::class.java)
+                intent.putExtra("intent_name",str_name)
+                startActivity(intent)
             }
 
             layout.addView(layout_item)

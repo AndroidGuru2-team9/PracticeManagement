@@ -18,7 +18,6 @@
             android:paddingTop="50dp"
             android:paddingRight="16dp"
             android:paddingBottom="16dp">
-
         </LinearLayout>
 
         <LinearLayout
