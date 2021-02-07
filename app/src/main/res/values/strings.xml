@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PracticeManagement</string>
+
+    <!--App Bar 메뉴 아이템-->
+    <string name="action_home">홈</string>
+    <string name="action_portfolio_list">포트폴리오 확인하기</string>
+    <string name="action_certificate_list">자격증/수상내역 확인하기</string>
+    <string name="action_write_certificate">자격증 추가하기</string>
+    <string name="action_write_prize">수상경력 추가하기</string>
+</resources>
