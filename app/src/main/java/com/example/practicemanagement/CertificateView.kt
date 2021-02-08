@@ -75,6 +75,8 @@ class CertificateView : AppCompatActivity() {
                 layout_item.addView(tvEtc)
 
             }
+
+            //혹은 제목 클릭하면 상세화면으로 넘어가기
             layout_item.setOnClickListener{
                 val intent = Intent(this,CertificateList::class.java)
                 intent.putExtra("intent_name",str_name)
@@ -108,36 +110,43 @@ class CertificateView : AppCompatActivity() {
             var str_contents = prizecursor.getString(prizecursor.getColumnIndex("contents")).toString()
             var str_etc = prizecursor.getString(prizecursor.getColumnIndex("etc")).toString()
 
-            var layout_item: LinearLayout = LinearLayout(this)
-            layout_item.orientation = LinearLayout.VERTICAL
-            layout_item.id=num
+            var prize_layout_item: LinearLayout = LinearLayout(this)
+            prize_layout_item.orientation = LinearLayout.VERTICAL
+            prize_layout_item.id=num
 
             //우선 제목만 보여주고
             var tvName:TextView = TextView(this)
             tvName.text = str_contestname
             tvName.textSize = 30f
-            layout_item.addView(tvName)
+            prize_layout_item.addView(tvName)
 
             //제목 클릭하면 펼치기
-            layout_item.setOnClickListener(){
+            prize_layout_item.setOnClickListener(){
                 var tvPrizeName:TextView = TextView(this)
-                tvPrizeName.text = "취득일: "+ str_prizename
-                layout_item.addView(tvPrizeName)
+                tvPrizeName.text = "수상명: "+ str_prizename
+                prize_layout_item.addView(tvPrizeName)
 
                 var tvDate:TextView = TextView(this)
                 tvDate.text = "취득일: "+ str_date
-                layout_item.addView(tvDate)
+                prize_layout_item.addView(tvDate)
 
                 var tvContents:TextView = TextView(this)
                 tvContents.text = "유효 기간:" +str_contents
-                layout_item.addView(tvContents)
+                prize_layout_item.addView(tvContents)
 
                 var tvEtc:TextView = TextView(this)
                 tvEtc.text ="비고: "+str_etc
-                layout_item.addView(tvEtc)
+                prize_layout_item.addView(tvEtc)
             }
 
-            prizelayout.addView(layout_item)
+            //혹은 제목 클릭하면 상세화면으로 넘어가기
+            prize_layout_item.setOnClickListener{
+                val intent = Intent(this,PrizeList::class.java)
+                intent.putExtra("intent_name",str_contestname)
+                startActivity(intent)
+            }
+
+            prizelayout.addView(prize_layout_item)
             prizenum++
         }
 

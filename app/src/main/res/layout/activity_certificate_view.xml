@@ -10,24 +10,28 @@
 
         <LinearLayout
             android:id="@+id/certificate"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
+            android:layout_gravity="center"
+            android:layout_margin="40dp"
             android:layout_height="wrap_content"
             android:background="#DFA4A4"
             android:orientation="vertical"
             android:paddingLeft="16dp"
-            android:paddingTop="50dp"
+            android:paddingTop="10dp"
             android:paddingRight="16dp"
             android:paddingBottom="16dp">
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/prize"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
             android:layout_height="wrap_content"
             android:background="#759FCC"
             android:orientation="vertical"
             android:paddingLeft="16dp"
-            android:paddingTop="50dp"
+            android:paddingTop="10dp"
             android:paddingRight="16dp"
             android:paddingBottom="16dp">
 

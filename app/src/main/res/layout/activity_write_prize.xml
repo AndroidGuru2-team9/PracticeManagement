@@ -13,28 +13,9 @@
         <GridLayout
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:columnCount="2"
-            android:rowCount="9">
+            android:columnCount="3"
+            android:rowCount="11">
 
-            <RadioGroup
-                android:id="@+id/btnGroup_writeP"
-                android:orientation="horizontal"
-                android:layout_column="0"
-                android:layout_row="0"
-                android:layout_columnSpan="2"
-                android:layout_gravity="center_horizontal">
-                <RadioButton
-                    android:id="@+id/btn_writeP_certificate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="자격증" />
-                <RadioButton
-                    android:id="@+id/btn_writeP_prize"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="수상" />
-
-            </RadioGroup>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -82,12 +63,13 @@
                 android:text="수상날짜"
                 android:textSize="20sp" />
             <LinearLayout>
+
                 <Button
                     android:id="@+id/btn_writeP_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1"
                     android:layout_row="3"
+                    android:layout_column="1"
                     android:layout_gravity="center_vertical"
                     android:text="날짜 선택" />
                 <TextView
@@ -141,15 +123,32 @@
                 android:layout_gravity="center_vertical"
                 android:text="자료첨부"
                 android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/btn_writeP_picture"
-                android:layout_width="150dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_row="6"
-                android:layout_gravity="center_vertical"
-                android:text="사진 첨부" />
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginTop="20sp"
+                >
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:maxHeight="100dp"
+                    android:maxWidth="100dp"
+                    android:adjustViewBounds="true">
+
+                </ImageView>
+                <Button
+                    android:id="@+id/btn_writeP_picture"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_row="6"
+                    android:layout_gravity="center_vertical"
+                    android:text="사진 첨부" />
+            </LinearLayout>
+
 
             <Button
                 android:id="@+id/btn_writeP_file"
@@ -160,15 +159,28 @@
                 android:layout_gravity="center_vertical"
                 android:text="파일 첨부" />
 
-            <Button
-                android:id="@+id/btn_writeP_complete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_row="8"
-                android:layout_columnSpan="2"
-                android:layout_gravity="center"
-                android:text="작성완료" />
+            <LinearLayout
+                android:layout_row="9"
+                android:layout_column="1"
+                android:layout_gravity="center">
+                <Button
+                    android:id="@+id/btn_writeP_revise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_column="0"
+                    android:layout_row="10"
+                    android:text="수정완료" />
+                <Button
+                    android:id="@+id/btn_writeP_complete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_column="1"
+                    android:layout_row="10"
+                    android:text="작성완료" />
+            </LinearLayout>
+
         </GridLayout>
 
         //하단 네비게이션바
