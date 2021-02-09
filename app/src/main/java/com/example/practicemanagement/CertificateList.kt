@@ -27,7 +27,6 @@ class CertificateList : AppCompatActivity() {
     lateinit var str_date: String
     lateinit var str_period: String
     lateinit var str_etc: String
-    lateinit var str_img: Image
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +40,6 @@ class CertificateList : AppCompatActivity() {
         tvDate = findViewById(R.id.date)
         tvPeriod = findViewById(R.id.period)
         tvEtc = findViewById(R.id.etc)
-        tvImg = findViewById(R.id.img)
 
         val intent = intent
         str_name = intent.getStringExtra("intent_name").toString()
@@ -85,6 +83,11 @@ class CertificateList : AppCompatActivity() {
                 certificate.close()
 
                 val intent = Intent(this, CertificateView::class.java)
+                startActivity(intent)
+                return true
+            }
+            R.id.action_certificate_revise ->{
+                val intent = Intent(this,ReviseCertificate::class.java)
                 startActivity(intent)
                 return true
             }

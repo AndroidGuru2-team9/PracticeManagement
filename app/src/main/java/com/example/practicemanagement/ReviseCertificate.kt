@@ -1,6 +1,5 @@
 package com.example.practicemanagement
 
-import android.app.ActionBar
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
@@ -11,10 +10,13 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.MenuItem
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import java.util.*
 
-class WriteCertificate : AppCompatActivity() {
+class ReviseCertificate : AppCompatActivity() {
 
     lateinit var certificate: CertifiCateManager
     lateinit var sqlitedb: SQLiteDatabase
@@ -25,14 +27,13 @@ class WriteCertificate : AppCompatActivity() {
     lateinit var edt_writeC_selectPeriod: EditText
     lateinit var edt_writeC_etc: EditText
     lateinit var btn_writeC_picture: Button
-    lateinit var img:ImageView
+    lateinit var img: ImageView
     lateinit var btn_writeC_file: Button
-    lateinit var btn_writeC_complete: Button
+    lateinit var btn_writeC_revise: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_write_certificate)
-
+        setContentView(R.layout.activity_revise_certificate)
 
         edt_writeC_name = findViewById(R.id.edt_writeC_name)
         btn_writeC_selectDate = findViewById(R.id.btn_writeC_selectDate)
@@ -42,7 +43,7 @@ class WriteCertificate : AppCompatActivity() {
         btn_writeC_picture = findViewById(R.id.btn_writeC_picture)
         img = findViewById(R.id.img)
         btn_writeC_file = findViewById(R.id.btn_writeC_file)
-        btn_writeC_complete = findViewById(R.id.btn_writeC_complete)
+        btn_writeC_revise = findViewById(R.id.btn_writeC_revise)
 
         //뒤로가기 버튼
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -55,7 +56,7 @@ class WriteCertificate : AppCompatActivity() {
             var month: Int = today.get(Calendar.MONTH)
             var date: Int = today.get(Calendar.DATE)
 
-            var listener = DatePickerDialog.OnDateSetListener{datePicker,year,month,date ->
+            var listener = DatePickerDialog.OnDateSetListener{ datePicker, year, month, date ->
                 calendarTextView.text = "${year}년 ${month + 1}월 ${date}일"
             }
             var picker = DatePickerDialog(this,listener,year,month,date)
@@ -69,8 +70,9 @@ class WriteCertificate : AppCompatActivity() {
         btn_writeC_picture.setOnClickListener{
             openGallery()               //openGallery함수 호출
         }
-        //작성완료 클릭했을때
-        btn_writeC_complete.setOnClickListener{
+
+        //수정완료 클릭했을때
+        btn_writeC_revise.setOnClickListener{
             var str_name: String = edt_writeC_name.text.toString()
             //var str_date: String = calendarTextView.text.toString()
             var str_date: String =" "
@@ -81,18 +83,17 @@ class WriteCertificate : AppCompatActivity() {
                 str_date = calendarTextView.text.toString()
             }
 
-                sqlitedb = certificate.writableDatabase
-                sqlitedb.execSQL("INSERT INTO certificate VALUES ('" + str_name +"','"
-                        + str_date + "',"+"'"+str_period+"'"+",'"+str_etc+"');")
-                sqlitedb.close()
+            sqlitedb = certificate.readableDatabase
+            sqlitedb.execSQL("UPDATE certificate SET date='"+str_date +"', period='"
+                    +str_period+"',etc='"+str_etc
+                    +"' WHERE name = '"+str_name+"';")
+            sqlitedb.close()
 
             val intent = Intent(this,CertificateView::class.java)
             intent.putExtra("intent_name",str_name)
             startActivity(intent)
         }
-
     }
-
     private val OPEN_GALLERY = 1
 
     private fun openGallery(){
