@@ -159,16 +159,14 @@
                 android:layout_gravity="center_vertical"
                 android:text="파일 첨부" />
 
-
             <Button
-                android:id="@+id/btn_writeP_complete"
+                android:id="@+id/btn_writeP_revise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="10"
                 android:layout_column="1"
                 android:layout_gravity="center"
-                android:text="작성완료" />
-
+                android:text="수정완료" />
         </GridLayout>
 
         //하단 네비게이션바

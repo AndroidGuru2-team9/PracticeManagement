@@ -87,6 +87,11 @@ class PrizeList : AppCompatActivity() {
                 startActivity(intent)
                 return true
             }
+            R.id.action_prize_revise ->{
+                val intent = Intent(this,RevisePrize::class.java)
+                startActivity(intent)
+                return true
+            }
             android.R.id.home -> {
                 val intent = Intent(this, CertificateView::class.java)
                 startActivity(intent)

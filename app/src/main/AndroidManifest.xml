@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PracticeManagement"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ReviseCertificate"></activity>
+        <activity android:name=".RevisePrize"></activity>
+        <activity android:name=".ReviseCertificate" />
         <activity android:name=".PrizeList" />
         <activity android:name=".CertificateList" />
         <activity android:name=".WritePrize" />
